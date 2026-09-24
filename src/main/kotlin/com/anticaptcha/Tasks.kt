@@ -65,6 +65,10 @@ public data class RecaptchaV2(
     /** The `data-sitekey` value. */
     val websiteKey: String,
     val websiteSToken: String? = null,
+    /**
+     * Set to `true` if there's `"size":"invisible"` in the render call.
+     * Enterprise tasks receive the flag only when it is `true`.
+     */
     val isInvisible: Boolean = false,
     /** The `data-s` parameter, typical for google.com websites. */
     val dataSValue: String? = null,
@@ -276,7 +280,9 @@ internal object Tasks {
         put("type", type)
         put("websiteURL", settings.websiteUrl)
         put("websiteKey", settings.websiteKey)
-        put("isInvisible", settings.isInvisible)
+        if (!settings.isEnterprise || settings.isInvisible) {
+            put("isInvisible", settings.isInvisible)
+        }
         putIfNotEmpty("websiteSToken", settings.websiteSToken)
         putIfNotEmpty("recaptchaDataSValue", settings.dataSValue)
         putIfNotEmpty("apiDomain", settings.apiDomain)

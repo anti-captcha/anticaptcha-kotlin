@@ -97,6 +97,17 @@ class TasksTest {
     }
 
     @Test
+    fun `recaptcha v2 enterprise sends isInvisible only when true`() {
+        val visible = RecaptchaV2(websiteUrl = "https://website.com/", websiteKey = "KEY", isEnterprise = true)
+        val invisible = visible.copy(isInvisible = true)
+
+        assertNull(Tasks.recaptchaV2(visible, null)["isInvisible"])
+        assertNull(Tasks.recaptchaV2(visible, proxy)["isInvisible"])
+        assertEquals("true", Tasks.recaptchaV2(invisible, null)["isInvisible"]?.jsonPrimitive?.content)
+        assertEquals("true", Tasks.recaptchaV2(invisible, proxy)["isInvisible"]?.jsonPrimitive?.content)
+    }
+
+    @Test
     fun `recaptcha v3 checks the score`() {
         val task = Tasks.recaptchaV3(
             RecaptchaV3(

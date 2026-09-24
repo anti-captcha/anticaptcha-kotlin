@@ -12,7 +12,7 @@ For more technical information and articles visit our [documentation](https://an
 
 **Gradle**:
 ```kotlin
-implementation("com.anti-captcha:anticaptcha-kotlin:1.0.0")
+implementation("com.anti-captcha:anticaptcha-kotlin:1.0.1")
 ```
 
 **Maven**:
@@ -20,7 +20,7 @@ implementation("com.anti-captcha:anticaptcha-kotlin:1.0.0")
 <dependency>
   <groupId>com.anti-captcha</groupId>
   <artifactId>anticaptcha-kotlin</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
@@ -152,8 +152,10 @@ val solution = ac.solveRecaptchaV2(
         websiteUrl = "https://store.steampowered.com/join",
         websiteKey = "6LdIFr0ZAAAAAO3vz0O0OQrtAefzdJcWQM2TMYQH",
         isEnterprise = true,
+        // set to "true" if there's "size":"invisible" option in "grecaptcha.enterprise.render" function
+        isInvisible = false,
         // Additional parameters passed to the grecaptcha.enterprise.render call
-        enterprisePayload = mapOf("s" to "SOME_ADDITIONAL_TOKEN"),
+        enterprisePayload = mapOf("s" to "TEMPORARY_TOKEN_VALUE_IF_PRESENT", "action" to "form_submit"),
         // apiDomain = "recaptcha.net",   // only for a non-google.com script domain
     )
 )

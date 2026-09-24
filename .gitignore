@@ -1,0 +1,23 @@
+# Build output
+build/
+out/
+*.jar
+*.class
+
+# Gradle
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Signing keys — never commit these
+*.asc
+*.gpg
+secring.*
+
+# OS
+.DS_Store

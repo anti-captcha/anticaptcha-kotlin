@@ -127,7 +127,9 @@ private val examples: Map<String, suspend () -> Unit> = mapOf(
                 websiteUrl = "https://store.steampowered.com/join",
                 websiteKey = "6LdIFr0ZAAAAAO3vz0O0OQrtAefzdJcWQM2TMYQH",
                 isEnterprise = true,
-                enterprisePayload = mapOf("s" to "SOME_ADDITIONAL_TOKEN"),
+                // set to "true" if there's "size":"invisible" option in "grecaptcha.enterprise.render" function
+                isInvisible = false,
+                enterprisePayload = mapOf("s" to "TEMPORARY_TOKEN_VALUE_IF_PRESENT", "action" to "form_submit"),
                 // apiDomain = "recaptcha.net",  // only for a non-google.com script domain
             ),
         )
